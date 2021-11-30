@@ -8,6 +8,20 @@
     }
 }
 
+@keyframes glitch {
+    from {
+        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                     0.025em 0.05em 0 rgba(100, 155, 0, 0.75),
+         ;
+    } to {
+        text-shadow: 0.05em 0 0 rgba(0, 255, 0, 0.75),
+                     -0.025em -0.05em 0 rgba(0, 100, 55, 0.75),
+                     0.025em 0.05em 0 rgba(0, 0, 255, 0.75),
+
+    }
+}
+
 .app {
     background-color: none;
     display: flex;
@@ -32,7 +46,9 @@
               align-items: center;
               text-align: center;
               font-size: 20px;
-
+                .encrypt {
+                    animation: glitch 1s ease-in-out infinite;
+                }
                 input {
                     width:600px;
                     border:none;

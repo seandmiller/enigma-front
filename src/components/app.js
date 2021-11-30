@@ -38,13 +38,14 @@ export default class App extends PureComponent {
       x,y,z
    ] = settings 
     console.log(x,y,z)
-    axios.post(`http://127.0.0.1:5000/?rotors=${rotors}&x=${x}&y=${y}&z=${z}&word=${word}&plug_board=${plugBoard}`)
+    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${rotors}&x=${x}&y=${y}&z=${z}&word=${word}&plug_board=${plugBoard}`)
     .then(response => {
       this.setState({  
         encryption: response.data.token,
         rotor : response.data.settings,
         word: ''
-      })
+      });
+    
     
   
     })
