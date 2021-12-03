@@ -2,8 +2,11 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import Info from './instructions';
 import Technical from './technical';
+import {faTrash, faLock} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {library} from "@fortawesome/fontawesome-svg-core";
 
-
+library.add(faLock)
 export default class App extends PureComponent {
   constructor() {
     super();
@@ -33,11 +36,11 @@ export default class App extends PureComponent {
     if (this.state.rotors.length != 3) {
       return;
     }
-    
+    this.setState({encryption:''})
     var [
       x,y,z
    ] = settings 
-    console.log(x,y,z)
+    
     axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${rotors}&x=${x}&y=${y}&z=${z}&word=${word}&plug_board=${plugBoard}`)
     .then(response => {
       this.setState({  
@@ -156,7 +159,8 @@ toggleButton(n, rotor) {
            <p>Inspired by the Movie: The Imitation Game</p>
 
       <input type='text' name='word' value={this.state.word} onChange={this.handleChange}  />
-     <h1 className='encrypt' >   {this.state.encryption} </h1>
+     <h1 className='encrypt' > {this.state.encryption.length > 0 ?  <div> {this.state.encryption} </div> :
+      <FontAwesomeIcon icon='lock' /> } </h1>
     
   
   
