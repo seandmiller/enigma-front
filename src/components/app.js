@@ -13,7 +13,7 @@ export default class App extends PureComponent {
      this.state = {
        word : '',
        rotors: '',
-       encryption: '',
+       encryption: ' ',
        rotor_settings: [true,true,true,true,true],
        r1:0,
        r2:1,
@@ -53,7 +53,7 @@ export default class App extends PureComponent {
   
     })
      .catch(error => console.log(error))
-     console.log(this.state.plug_board)
+     
   }
 
 
