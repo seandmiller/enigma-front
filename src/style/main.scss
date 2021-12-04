@@ -304,6 +304,9 @@ body {
         .bottom {
             .rotors {
                 .choices {
+                    &:hover {
+                        background-color: white;
+                    }
                   button {
                       margin-left:20%;
                       width:60%;
