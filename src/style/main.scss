@@ -293,6 +293,9 @@ body {
         }
         .top-part {
             .nested {
+                .encrypt {
+                    overflow-wrap: anywhere;
+                }
                 input {
                     width: 60%;
                     &:hover {
@@ -352,6 +355,19 @@ body {
 @media (max-device-width: 375px) {
  .app {
 .page-wrapper {
+    .top-part {
+        .nested {
+            .encrypt {
+                overflow-wrap: anywhere;
+            }
+            input {
+                width: 60%;
+                &:hover {
+                    width: 60%;
+                }
+            }
+        }
+    }
 
     .plugBoard-wrapper .plug-board {
         margin-top: 30px;
@@ -398,4 +414,9 @@ body {
   } 
   }
  }
-} }
+
+}
+body {
+    overflow-x: hidden;
+    position: relative;
+}}
