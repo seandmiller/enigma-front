@@ -61,7 +61,7 @@
                    
                 }
                 input {
-                    width:600px;
+                    width:400px;
                     border:none;
                     border-bottom: 1px solid black;
                     transition: 0.5s ease-in-out;
@@ -69,7 +69,7 @@
                         outline:none
                     }
                     &:hover {
-                        width: 120%;
+                        width: 110%;
                     }
 
                 }
@@ -366,12 +366,12 @@ body {
                 overflow-wrap: anywhere;
             }
             input {
-                width: 60%;
+                width: 50%;
                 &:hover {
-                    width: 60%;
+                    width: 50%;
                 }
                 &:focus {
-                    width: 60%;
+                    width: 50%;
                 }
             }
         }
