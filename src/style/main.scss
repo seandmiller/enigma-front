@@ -69,7 +69,7 @@
                         outline:none
                     }
                     &:hover {
-                        width: 900px;
+                        width: 120%;
                     }
 
                 }
@@ -301,6 +301,9 @@ body {
                     &:hover {
                         width: 60%;
                     }
+                    &:focus {
+                        width: 50%;
+                    }
                 }
             }
         }
@@ -365,6 +368,9 @@ body {
             input {
                 width: 60%;
                 &:hover {
+                    width: 60%;
+                }
+                &:focus {
                     width: 60%;
                 }
             }
