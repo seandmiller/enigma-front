@@ -159,7 +159,7 @@ toggleButton(n, rotor) {
            <p>Inspired by the Movie: The Imitation Game</p>
 
       <input type='text' name='word' value={this.state.word} onChange={this.handleChange}  />
-     <h1 className='encrypt' > {this.state.encryption.length > 0 ?  <div> {this.state.encryption} </div> :
+     <h1 className='encrypt-wrapper' > {this.state.encryption.length > 0 ?  <div className='encrypt'> {this.state.encryption} </div> :
       <FontAwesomeIcon icon='lock' /> } </h1>
     
   
