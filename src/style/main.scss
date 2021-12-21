@@ -59,9 +59,7 @@
               .encrypt-wrapper {
                 .encrypt {
                     animation: glitch 0.5s ease-in-out infinite;
-
-                    
-                        overflow-wrap: anywhere;
+                
                     
                    
                 }  }
@@ -369,9 +367,14 @@ body {
     .top-part {
         .nested {
             .encrypt-wrapper {
-            .encrypt {
-                overflow-wrap: anywhere;
-            }}
+                display: flex;
+                justify-content: center;
+                .encrypt {
+                    width:70%;
+                    
+                }
+            }
+     
             input {
                 width: 50%;
                 &:hover {
@@ -383,7 +386,15 @@ body {
             }
         }
     }
-
+    .bottom {
+      .rotors { 
+        .chosen-wrapper {
+            display: grid;
+         grid-template-rows: 1fr;
+         grid-gap: 10px;
+         border-radius: 0px;
+        }
+     }
     .plugBoard-wrapper .plug-board {
         margin-top: 30px;
         display: grid;
@@ -421,14 +432,15 @@ body {
                 cursor:pointer;
                 
 
+              }
             }
+          }
         }
        }
+      } 
      }
+    }
+
    }
   } 
-  }
- }
-
-}
 }
