@@ -203,12 +203,12 @@ toggleButton(n, rotor) {
          </div>:
          null }
          
-          
+          <div className='chosen-container'>
           <div className='chosen-wrapper'>
             {chosen()}
              
           </div>
-
+        </div>
         </div>
 
         <div className='config-wrapper' >

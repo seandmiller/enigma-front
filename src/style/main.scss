@@ -119,7 +119,7 @@
     display: flex;
     justify-content: space-around;
     margin-top : 20px;
-    margin-left:25px;
+    margin-left:5px;
     
     
    .chosen {
@@ -339,14 +339,22 @@ body {
                       width:60%;
                   }
                 }
+                
+                 
+              .chosen-container {
+                    display: flex;
+                    justify-content: center;
                 .chosen-wrapper {
+                    
                     margin:0px;
                     margin-top: 30px;
                     display: grid;
                     grid-template-columns: 1fr;
                     grid-gap:10px;
-                    margin-left: 19%;
-                }
+                
+                } 
+              } 
+            
             }
         }
         .plugBoard-wrapper { 
