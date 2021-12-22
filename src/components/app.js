@@ -39,15 +39,28 @@ export default class App extends PureComponent {
     this.setState({encryption:''})
     var [
       x,y,z
-   ] = settings 
-    
-    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${rotors}&x=${x}&y=${y}&z=${z}&word=${word}&plug_board=${plugBoard}`)
+   ] = settings
+  
+   word = word.split("")
+   var wanted = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_qwertyuiopasdfghjklzxcvbnm'.split("")
+  var newWord = ''
+  for (var i = 0; i < word.length; i++) {
+        if (word[i] == " ") {
+          word+= '_'
+        }
+   else if (wanted.indexOf(word[i]) > -1) {
+       newWord += word[i]
+    }
+  }
+  console.log(newWord)
+    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${rotors}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
     .then(response => {
       this.setState({  
         encryption: response.data.token,
         rotor : response.data.settings,
         word: ''
       });
+      console.log(this.state.encryption)
     
     
   

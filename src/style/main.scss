@@ -16,7 +16,7 @@
          ;
          color:black;
         transform: translate(1%);
-        transform: translateY(1%);
+        transform: translateY(0%);
         
         
     } to {
@@ -25,7 +25,7 @@
                      0.050em 0.07em 0 rgba(255, 255, 255, 0.75);
        color: black;
        transform: translate(-1%);
-      transform: translateY(-1%);
+      transform: translateY(0%);
       
     
 
@@ -57,9 +57,21 @@
               text-align: center;
               font-size: 20px;
               .encrypt-wrapper {
+                  display: flex;
+                  justify-content: center;
                 .encrypt {
                     animation: glitch 0.5s ease-in-out infinite;
-                
+                    width:70%;
+                    overflow-wrap: break-word;
+                    word-wrap: break-word;
+
+                    -ms-word-break: break-all;
+                    word-break: break-all;
+                    word-break: break-word;
+                    -ms-hyphens: auto;
+                    -moz-hyphens: auto;
+                    -webkit-hyphens: auto;
+                    hyphens: auto;
                     
                    
                 }  }
@@ -306,24 +318,8 @@ body {
         }
         .top-part {
             .nested {
-                width:80%;
-                overflow-wrap: anywhere;
-                .encrypt-wrapper {
-                    display: flex;
-                    justify-content: center;
-                .encrypt {
-                    width:70%;
-                    overflow-wrap: break-word;
-                    word-wrap: break-word;
-
-                    -ms-word-break: break-all;
-                    word-break: break-all;
-                    word-break: break-word;
-                    -ms-hyphens: auto;
-                    -moz-hyphens: auto;
-                    -webkit-hyphens: auto;
-                    hyphens: auto;
-                } }
+                
+              
                 input {
                     width: 60%;
                     &:hover {
