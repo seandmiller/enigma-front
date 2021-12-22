@@ -289,18 +289,7 @@ body {
         padding:0px;
         width: 90%;
        
-        .top-part {
-            .nested {
-                .encrypt-wrapper {
-                    display: flex;
-                    justify-content: center;
-                    .encrypt {
-                        width:70%;
-                        
-                    }
-                }
-            }
-        }
+      
 
         .technical-overview {
              p {
@@ -317,9 +306,13 @@ body {
         }
         .top-part {
             .nested {
+                width:80%;
+                overflow-wrap: anywhere;
                 .encrypt-wrapper {
+                    display: flex;
+                    justify-content: center;
                 .encrypt {
-                    overflow-wrap: anywhere;
+                    width:70%
                 } }
                 input {
                     width: 60%;
@@ -349,6 +342,10 @@ body {
                 .chosen-wrapper {
                     margin:0px;
                     margin-top: 30px;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-gap:10px;
+                    margin-left: 19%;
                 }
             }
         }
