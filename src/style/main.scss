@@ -276,7 +276,12 @@ body {
 
 @media (max-device-width: 1024px) {
     .app {
- 
+        button {
+            &hover {
+                background-color: black;
+                color:white;
+            }
+        }
         
     .page-wrapper {
         padding:0px;
@@ -327,6 +332,7 @@ body {
         }
         .bottom {
             .rotors {
+
                 .choices { 
                     button {
                     &:hover {
@@ -377,6 +383,7 @@ body {
 
 @media (max-device-width: 375px) {
  .app {
+   
 .page-wrapper {
     .top-part {
         .nested {
