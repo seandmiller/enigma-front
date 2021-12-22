@@ -281,6 +281,20 @@ body {
     .page-wrapper {
         padding:0px;
         width: 90%;
+       
+        .top-part {
+            .nested {
+                .encrypt-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    .encrypt {
+                        width:70%;
+                        
+                    }
+                }
+            }
+        }
+
         .technical-overview {
              p {
                  width: 100%;
