@@ -46,7 +46,7 @@ export default class App extends PureComponent {
   var newWord = ''
   for (var i = 0; i < word.length; i++) {
         if (word[i] == " ") {
-          word+= '_'
+          newWord+= '_'
         }
    else if (wanted.indexOf(word[i]) > -1) {
        newWord += word[i]
