@@ -52,6 +52,7 @@ const Camera = (props) => {
 
         }).then(stream => {
             let video = videoRef.current;
+            video.setAttribute('playsinline', true);
             video.srcObject = stream;
             video.play();
         }).catch(err => console.error(err ))
