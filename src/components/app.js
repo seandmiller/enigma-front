@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import Info from './instructions';
 import Technical from './technical';
-import {faTrash, faLock} from '@fortawesome/free-solid-svg-icons';
+import {faCamera , faLock} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
+import Camera from './camera';
 
-library.add(faLock)
+
+library.add(faLock, faCamera)
 export default class App extends PureComponent {
   constructor() {
     super();
@@ -22,14 +24,16 @@ export default class App extends PureComponent {
        ,'R','S','T','U','V','W','X','Y','Z', '1','2','3','4','5', '6','7', '8', '9', '0', '_' ],
        plug_board: '',
        enablePlug:false,
-       instructions: true
+       instructions: true,
+       camera:false
      }
 
-    this.encrypt_msg = this.encrypt_msg.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleRotor = this.handleRotor.bind(this)
-    this.handleClickR = this.handleClickR.bind(this)
-    this.handlePlugBoard = this.handlePlugBoard.bind(this)
+    this.encrypt_msg = this.encrypt_msg.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleRotor = this.handleRotor.bind(this);
+    this.handleClickR = this.handleClickR.bind(this);
+    this.handlePlugBoard = this.handlePlugBoard.bind(this);
+    this.handleCamera    =  this.handleCamera.bind(this)
   }
 
   encrypt_msg(rotors, settings, word, plugBoard) {
@@ -40,30 +44,32 @@ export default class App extends PureComponent {
     var [
       x,y,z
    ] = settings
-  
-   word = word.split("")
-   var wanted = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_qwertyuiopasdfghjklzxcvbnm'.split("")
+ //Data clean up
+  var wanted = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_qwertyuiopasdfghjklzxcvbnm'.split("")
   var newWord = ''
   for (var i = 0; i < word.length; i++) {
         if (word[i] == " ") {
           newWord+= '_'
         }
-   else if (wanted.indexOf(word[i]) > -1) {
+    else if (wanted.indexOf(word[i]) > -1) {
        newWord += word[i]
     }
   }
-  console.log(newWord)
-    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${rotors}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
+   const hash_m = {'#':'0', '*':'1', '^':'2','-':'3', '%':'4'}
+   var newRotor  = ''
+   for (var i= 0; i < 3; i++) {
+     newRotor += hash_m[rotors[i]]
+
+   }
+   
+   
+   axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${newRotor}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
     .then(response => {
       this.setState({  
         encryption: response.data.token,
         rotor : response.data.settings,
         word: ''
       });
-      console.log(this.state.encryption)
-    
-    
-  
     })
      .catch(error => console.log(error))
      
@@ -90,8 +96,6 @@ handleClickR(e) {
 
 
 handlePlugBoard(letter) {
-
-  
  
   this.setState({
     
@@ -105,16 +109,17 @@ handlePlugBoard(letter) {
 
 handleRotor(n, rotor) {
   if (this.state.rotors.length == 3) {
-    console.log('done')
     return ; 
   }
+  
   var theItems = [...this.state.rotor_settings]
   theItems[rotor] = false
   this.setState({
     rotors: this.state.rotors.concat(n),
     rotor_settings: theItems })
-  
+  console.log(this.state.rotors)
 }
+
 toggleButton(n, rotor) {
   if (n == this.state.r1 && rotor == 'r1') {
     return 'active-rotor' + rotor
@@ -129,9 +134,26 @@ toggleButton(n, rotor) {
 }
 
 
+handleCamera() {
+  this.setState({
+    camera:!this.state.camera
+  })
+}
+
 
   render() {
-         
+    
+   if (this.state.camera) {
+    return <Camera 
+    handleCamera={this.handleCamera} 
+    encrypt={this.encrypt_msg} 
+    rotorSettings={[this.state.r1, this.state.r2, this.state.r3]} 
+    plugBoard={this.state.plug_board}
+    rotors={this.state.rotors}
+    encryptedWord ={this.state.encryption} />
+   }
+   
+
      if (this.state.instructions) {
        return  (<div className='info-wrapper' > <Info/>
         
@@ -147,7 +169,7 @@ toggleButton(n, rotor) {
     { return (<button className={ this.toggleButton(num, rtor)}  name={rtor} key={num * 2}  onClick={ this.handleClickR} value={num}> {num} </button> )})
   
     const chosen = () => [...this.state.rotors].map( item => {
-      return  (<div className='chosen' key={item + 1} >{ 'Rotor ' + (parseInt(item) + 1)  }</div>)
+      return  (<div className='chosen' key={item } >{ 'Rotor ' + item  }</div>)
 
     })
 
@@ -161,7 +183,7 @@ toggleButton(n, rotor) {
          
       <div className='app' style={{background: 'url(' +'https://wallpaperaccess.com/full/2939800.jpg' + ')'}}>
      
-   
+  
 
   
      <div className='page-wrapper'>
@@ -177,19 +199,28 @@ toggleButton(n, rotor) {
     
   
   
-    {this.state.rotors.length == 3 && (this.state.plug_board.length == 20 || this.state.enablePlug == false)? 
+    {this.state.rotors.length == 3 && (this.state.plug_board.length == 20 || this.state.enablePlug == false) ? 
      
-    
+     <div className='scramble-action-wrapper'> 
 
     <button className='scramble' onClick={() => this.encrypt_msg(this.state.rotors, 
       [this.state.r1,this.state.r2,this.state.r3] ,
        this.state.word
       , this.state.plug_board )}> Scramble </button> 
+
+        <div className='cam-btn-wrapper'>
+          <div className='camera-btn' onClick={this.handleCamera} > <FontAwesomeIcon icon='camera'/> (in BETA)  </div>
+        </div>
+
+      </div>
+        
         : null }
         </div>
     
     </div>  
       <div className='bottom'>
+
+        
         <div className='rotors' >
 
           
@@ -198,33 +229,33 @@ toggleButton(n, rotor) {
             <h2 className='h2-class'> Choose your rotors </h2>
 
         {this.state.rotor_settings[0] ?
-          <button onClick={() => this.handleRotor('0', 0)} > Rotor 1 </button>
+          <button onClick={() => this.handleRotor('#', 0)} > # </button>
          :null}
         {this.state.rotor_settings[1] ?
-          <button onClick={() => this.handleRotor('1', 1)} >  Rotor 2</button>
+          <button onClick={() => this.handleRotor('%', 1)} >%</button>
          : null}
 
          {this.state.rotor_settings[2] ?
-          <button onClick={() => this.handleRotor('2', 2)}  > Rotor 3</button>
+          <button onClick={() => this.handleRotor('*', 2)}  >*</button>
            : null }
           {this.state.rotor_settings[3] ?
-          <button onClick={() => this.handleRotor('3', 3)}  >Rotor 4</button>
+          <button onClick={() => this.handleRotor('^', 3)}  >^</button>
             : null }
           {this.state.rotor_settings[4] ? 
-          <button onClick={() => this.handleRotor('4', 4)}  > Rotor 5</button> 
+          <button onClick={() => this.handleRotor('+', 4)}  >+</button> 
            : null }
          </div>:
          null }
          
           <div className='chosen-container'>
-          <div className='chosen-wrapper'>
-            {chosen()}
+            <div className='chosen-wrapper'>
+             {chosen()}
              
+            </div>
+           </div>
           </div>
-        </div>
-        </div>
 
-        <div className='config-wrapper' >
+        {/* <div className='config-wrapper' >
 
           { this.state.rotors.length == 3 ? <div className='config'>
           
@@ -258,7 +289,7 @@ toggleButton(n, rotor) {
           }
 
 
-        </div>
+        </div> */}
 
       </div>
       
@@ -277,7 +308,7 @@ toggleButton(n, rotor) {
      <Technical/>
 
       </div>
-
+      
   </div>
 
     )

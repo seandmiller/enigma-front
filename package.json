@@ -70,6 +70,7 @@
     "sass": "^1.44.0",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.21.0",
+    "tesseract.js": "^2.1.5",
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
     "webpack-dev-middleware": "3.7.2",
