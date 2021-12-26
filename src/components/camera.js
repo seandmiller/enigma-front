@@ -76,7 +76,7 @@ const Camera = (props) => {
     return (<div className='camera-wrapper'>
          <div className='camera-cont'>
             <video  ref={videoRef} allow='camera;microphone' ></video>
-            <div className='cryptic'> Detected Text: {props.encryptedWord}</div>
+            <div className='cryptic'>{props.encryptedWord}</div>
             <button onClick={takePhoto}>Capture Text</button>
             <button onClick={props.handleCamera}>HomePage </button>
 
