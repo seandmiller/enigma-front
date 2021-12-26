@@ -6,6 +6,7 @@ import Tesseract from 'tesseract.js';
 const Camera = (props) => {
     const videoRef = useRef(null)
     const photoRef = useRef(null)
+    const [phone, setPhone] = useState(false)
     
     const takePhoto = () => {
         const width = 414
@@ -47,6 +48,7 @@ const Camera = (props) => {
     }
     const  getVideo = () => {
         navigator.mediaDevices.getUserMedia({video: {
+            facingMode:deviceType(),
             width:2000, height:1080}
 
         }).then(stream => {
@@ -55,7 +57,15 @@ const Camera = (props) => {
             video.play();
         }).catch(err => console.error(err ))
     }
-    
+   const deviceType = () => {
+        if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          setPhone(true)
+           }
+       if (phone == true) {
+           return 'user'
+       }   
+       return '' 
+    }
     useEffect(() => {getVideo()}, [videoRef] )
     
     
