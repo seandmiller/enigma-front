@@ -48,7 +48,6 @@ const Camera = (props) => {
     }
     const  getVideo = () => {
         navigator.mediaDevices.getUserMedia({video: {
-            facingMode:deviceType(),
             width:2000, height:1080}
 
         }).then(stream => {
