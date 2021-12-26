@@ -20,7 +20,7 @@ const Camera = (props) => {
         ctx.drawImage(video, 0, 0, width, height);
         var block = ctx.getImageData(0,0,   width,height)
         const matrix = block.data
-       // Personal constrast algorithm
+       // Personal contrast algorithm
         for  (var i = 0; i < matrix.length; i+=4) {
             matrix[i]     = matrix[i] * 2;
             matrix[i + 1] = matrix[i + 1] * 2;
@@ -61,16 +61,16 @@ const Camera = (props) => {
           setPhone(true)
            }
        if (phone == true) {
-           return 'user'
+           return true
        }   
-       return '' 
+       return false 
     }
     useEffect(() => {getVideo()}, [videoRef] )
     
     
     return (<div className='camera-wrapper'>
          <div className='camera-cont'>
-            <video  ref={videoRef} ></video>
+            <video  ref={videoRef} allow='camera;microphone' ></video>
             <div className='cryptic'> Detected Text: {props.encryptedWord}</div>
             <button onClick={takePhoto}>Capture Text</button>
             <button onClick={props.handleCamera}>HomePage </button>
