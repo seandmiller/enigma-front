@@ -8,6 +8,7 @@ const Camera = (props) => {
     const photoRef = useRef(null)
     const [phone, setPhone] = useState(false)
     
+
     const takePhoto = () => {
         const width = 414
         const height = width / (16/9)
@@ -46,8 +47,11 @@ const Camera = (props) => {
          
         console.log(props.encryptedWord, 'll')
     }
+
+
+
     const  getVideo = () => {
-        navigator.mediaDevices.getUserMedia({video: {
+        navigator.mediaDevices.getUserMedia({video: {facingMode:'environment',
             width:2000, height:1080}
 
         }).then(stream => {
