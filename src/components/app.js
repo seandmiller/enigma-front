@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import Info from './instructions';
 import Technical from './technical';
-import {faCamera , faLock} from '@fortawesome/free-solid-svg-icons';
+import {faCamera , faLock, faKey} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import Camera from './camera';
 
 
-library.add(faLock, faCamera)
+library.add(faLock, faCamera, faKey)
 export default class App extends PureComponent {
   constructor() {
     super();
@@ -169,7 +169,7 @@ handleCamera() {
     { return (<button className={ this.toggleButton(num, rtor)}  name={rtor} key={num * 2}  onClick={ this.handleClickR} value={num}> {num} </button> )})
   
     const chosen = () => [...this.state.rotors].map( item => {
-      return  (<div className='chosen' key={item } >{ 'Rotor ' + item  }</div>)
+      return  (<div className='chosen' key={item } > <FontAwesomeIcon icon='key'/> {  item  }</div>)
 
     })
 
