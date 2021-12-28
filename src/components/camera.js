@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, {useRef, useEffect, useState} from 'react';
 import Tesseract from 'tesseract.js';
 
@@ -93,9 +94,11 @@ const Camera = (props) => {
     return (<div className='camera-wrapper'>
          <div className='camera-cont'>
             <video  ref={videoRef} allow='camera;microphone' ></video>
+           <div className='crypt-cont'>
             <div className='cryptic'>{props.encryptedWord}</div>
-            <button className='takePhoto' onClick={takePhoto}>Capture Text</button>
-            <button onClick={props.handleCamera}>HomePage </button>
+             </div>
+            <div className='takePhoto' onClick={takePhoto}> <FontAwesomeIcon icon='circle'/>  </div>
+           <div className='homepage-btn'> <button onClick={props.handleCamera}>HomePage </button> </div>
 
 
          </div> 

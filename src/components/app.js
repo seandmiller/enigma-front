@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import Info from './instructions';
 import Technical from './technical';
-import {faCamera , faLock, faKey} from '@fortawesome/free-solid-svg-icons';
+import {faCamera , faLock, faKey, faCircle} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import Camera from './camera';
 
 
-library.add(faLock, faCamera, faKey)
+library.add(faLock, faCamera, faKey, faCircle)
 export default class App extends PureComponent {
   constructor() {
     super();
@@ -61,7 +61,7 @@ export default class App extends PureComponent {
      newRotor += hash_m[rotors[i]]
 
    }
-   console.log(newRotor)
+   
    
    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${newRotor}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
     .then(response => {
