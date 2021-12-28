@@ -55,13 +55,13 @@ export default class App extends PureComponent {
        newWord += word[i]
     }
   }
-   const hash_m = {'#':'0', '*':'1', '^':'2','-':'3', '%':'4'}
+   const hash_m = {'#':'0', '*':'1', '^':'2','+':'3', '%':'4'}
    var newRotor  = ''
    for (var i= 0; i < 3; i++) {
      newRotor += hash_m[rotors[i]]
 
    }
-   
+   console.log(newRotor)
    
    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${newRotor}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
     .then(response => {
@@ -86,7 +86,7 @@ handleChange(e) {
 handleClickR(e) {
   e.preventDefault();
   e.persist();
-  console.log(e.target.name)
+  
   this.setState({
      [e.target.name] : e.target.value,
      ['activeRoto' + e.target.name]: e.target.value
