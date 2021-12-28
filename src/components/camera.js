@@ -11,7 +11,7 @@ const Camera = (props) => {
 
     const takePhoto = () => {
         const width = 414
-        const height = width / (16/9)
+        const height =   width / (16/9)
         let video = videoRef.current;
         let photo = photoRef.current;
         photo.height = height;
@@ -19,20 +19,37 @@ const Camera = (props) => {
         let ctx = photo.getContext('2d');
 
         ctx.drawImage(video, 0, 0, width, height);
-        var block = ctx.getImageData(0,0,   width,height)
-        const matrix = block.data
-       // Personal contrast algorithm
-        for  (var i = 0; i < matrix.length; i+=4) {
-            matrix[i]     = matrix[i] * 2;
-            matrix[i + 1] = matrix[i + 1] * 2;
-            matrix[i + 2] = matrix[i + 2] ;
+        var block = ctx.getImageData(0,0,   width,height);
+        const matrix = block.data;
+        var w2 = width / 2;
+
+        for (var y = 0; y < matrix.length; y+=4) {
+    
+                var  r = matrix[y];
+             
+                var  g = matrix[y + 1];
+             
+                var  b = matrix[y + 2];
+             
+                var  a = matrix[y + 3];
+                var  gray = (0.299 * r + 0.587 * g + 0.114 * b);
+
+                if ( gray > 120) {
+                    matrix[y] = 255;
+                    matrix[y + 1] = 255;
+                    matrix[y + 2] = 255;
+                    matrix[y + 3] = a;
+                } else {
+                    matrix[y] = 0;
+                    matrix[y + 1] = 0;
+                    matrix[y + 2] = 0;
+                    matrix[y + 3] = a;
+
+                }
+            
         }
-        // inverting the image
-        for  (var i = 0; i < matrix.length; i+=4) {
-            matrix[i]     = 255 - matrix[i];
-            matrix[i + 1] = 255 - matrix[i + 1] ;
-            matrix[i + 2] = 255 - matrix[i + 2] ;
-        }
+
+
         ctx.putImageData(block, 0, 0);
         
         var data = photo.toDataURL('image/png');
