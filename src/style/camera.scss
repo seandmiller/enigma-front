@@ -68,19 +68,20 @@ justify-content: center;
 
     }
     video {
+   
         width:100%;
     }
     .homepage-btn {
         display: flex;
         justify-content: center;
-
+        
         button {
             background-color:lightgreen ;
             color:white;
             border-radius: 20px;
             text-decoration: none;
             border: none;
-            padding:5px;
+            padding:20px;
 
             &:focus {
                 outline:none;

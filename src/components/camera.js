@@ -94,7 +94,7 @@ const Camera = (props) => {
     return (<div className='camera-wrapper' style={{background: 'url(' +'https://wallpaperaccess.com/full/2939800.jpg' + ')'
                                                    }}>
          <div className='camera-cont'>
-            <video  ref={videoRef} allow='camera;microphone' ></video>
+            <video ref={videoRef} allow='camera;microphone' ></video>
            <div className='crypt-cont'>
             <div className='cryptic'>{props.encryptedWord}</div>
              </div>
