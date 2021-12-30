@@ -8,9 +8,11 @@ const Camera = (props) => {
     const videoRef = useRef(null)
     const photoRef = useRef(null)
     const [phone, setPhone] = useState(false)
+    const [scrambled, setScramble] = useState(1)
     
 
     const takePhoto = () => {
+        
         const width = 414
         const height =   width / (16/9)
         let video = videoRef.current;
@@ -33,7 +35,7 @@ const Camera = (props) => {
                 var  b = matrix[y + 2];
              
                 var  a = matrix[y + 3];
-                var  gray = (0.299 * r + 0.587 * g + 0.114 * b);
+                var  gray = (0.499 * r + 0.987 * g + 0.714 * b);
 
                 if ( gray > 120) {
                     matrix[y] = 255;
@@ -63,7 +65,6 @@ const Camera = (props) => {
          {props.encrypt(props.rotors, props.rotorSettings, text, props.plugBoard )} )
 
          
-        console.log(props.encryptedWord, 'll')
     }
 
 
@@ -96,7 +97,7 @@ const Camera = (props) => {
          <div className='camera-cont'>
             <video ref={videoRef} allow='camera;microphone' ></video>
            <div className='crypt-cont'>
-            <div className='cryptic'>{props.encryptedWord}</div>
+            <div className='cryptic'>{scrambled ? <div> {props.encryptedWord} </div> : <h1> <FontAwesomeIcon  icon='lock' /> </h1> }</div>
              </div>
             <div className='takePhoto' onClick={takePhoto}> <FontAwesomeIcon icon='circle'/>  </div>
            <div className='homepage-btn'> <button onClick={props.handleCamera}>HomePage </button> </div>
