@@ -74,6 +74,9 @@ const Camera = (props) => {
             video.setAttribute('playsinline', true);
             video.srcObject = stream;
             video.play();
+            if (!camera) {
+                stream.stop()
+            }
         }).catch(err => console.error(err ))
     }
   
