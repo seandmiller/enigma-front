@@ -2,20 +2,21 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import Info from './instructions';
 import Technical from './technical';
-import {faCamera , faLock, faKey, faCircle} from '@fortawesome/free-solid-svg-icons';
+import {faCamera , faLock, faKey, faCircle, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import Camera from './camera';
+import FuzzySet from 'fuzzyset';
 
 
-library.add(faLock, faCamera, faKey, faCircle)
+library.add(faLock, faCamera, faKey, faCircle, faSpinner)
 export default class App extends PureComponent {
   constructor() {
     super();
      this.state = {
        word : '',
        rotors: '',
-       encryption: ' ',
+       encryption: '',
        rotor_settings: [true,true,true,true,true],
        r1:0,
        r2:1,
@@ -36,7 +37,7 @@ export default class App extends PureComponent {
     this.handleCamera    =  this.handleCamera.bind(this)
   }
 
-  encrypt_msg(rotors, settings, word, plugBoard) {
+  encrypt_msg(rotors, settings, word, plugBoard, camera) {
     if (this.state.rotors.length != 3) {
       return;
     }
@@ -62,17 +63,20 @@ export default class App extends PureComponent {
 
    }
    
-   
    axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${newRotor}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
     .then(response => {
+      
       this.setState({  
         encryption: response.data.token,
         rotor : response.data.settings,
         word: ''
       });
+     
+     
+      
     })
      .catch(error => console.log(error))
-     
+   
   }
 
 
@@ -206,7 +210,7 @@ handleCamera() {
     <button className='scramble' onClick={() => this.encrypt_msg(this.state.rotors, 
       [this.state.r1,this.state.r2,this.state.r3] ,
        this.state.word
-      , this.state.plug_board )}> Scramble </button> 
+      , this.state.plug_board,false )}> Scramble </button> 
 
         <div className='cam-btn-wrapper'>
           <div className='camera-btn' onClick={this.handleCamera} > <FontAwesomeIcon icon='camera'/> (in BETA)  </div>

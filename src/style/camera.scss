@@ -57,16 +57,18 @@ justify-content: center;
         outline: none;
         cursor:pointer;
         color: red;
-        font-size: larger;
         font-size: 3em;
         background-color:transparent;
+        transition: 1s ease-in-out;
      
-        &:focus {
-            color:white;
+        &:active {
+            color : white ;
         }
+       
 
-
+       
     }
+ 
     video {
    
         width:100%;
@@ -95,5 +97,11 @@ justify-content: center;
        position: relative;
       display: none;
      
+   }
+   .spin-container {
+       position:absolute;
+       color: lightgreen;
+       font-size:5rem ;
+       top:50%;
    }
 }
