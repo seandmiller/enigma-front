@@ -10,6 +10,8 @@ const Camera = (props) => {
     const photoRef = useRef(null);
     var [brightness, setBrightness] = useState('brightness(1)');
     var [isLoading, setLoading]    = useState(false)
+   
+   
     const takePhoto = () => {
         setBrightness('brightness(1.75');
         setLoading(true)
@@ -74,15 +76,17 @@ const Camera = (props) => {
             video.setAttribute('playsinline', true);
             video.srcObject = stream;
             video.play();
-            if (!camera) {
-                stream.stop()
-            }
+
+            
         }).catch(err => console.error(err ))
+
+    
     }
   
     useEffect(() => {getVideo()}, [videoRef] )
 
     
+
     return (<div className='camera-wrapper' style={{background: 'url(' +'https://wallpaperaccess.com/full/2939800.jpg' + ')'
                                                    }}>
          <div className='camera-cont'>
@@ -91,7 +95,12 @@ const Camera = (props) => {
             <div className='cryptic'>{ props.encryptedWord}</div>
          
              </div>
+           
+            {isLoading ? <div className='takePhoto'> <FontAwesomeIcon icon='spinner' spin={true}/>   </div> 
+                              : //else :
             <div className='takePhoto' onClick={takePhoto}> <FontAwesomeIcon icon='circle'/>  </div>
+          
+                 }
            <div className='homepage-btn'> <button onClick={props.handleCamera}>HomePage </button> </div>
 
 
@@ -100,12 +109,7 @@ const Camera = (props) => {
             <canvas ref={photoRef}></canvas>
 
         </div>
-     <div className='spin-container'>  
-      {isLoading ? 
-       <div> 
-        <FontAwesomeIcon icon='spinner' spin={true}/> 
-       </div>: null}
-     </div>
+   
         </div>
     )
 }

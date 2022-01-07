@@ -37,7 +37,7 @@ export default class App extends PureComponent {
     this.handleCamera    =  this.handleCamera.bind(this)
   }
 
-  encrypt_msg(rotors, settings, word, plugBoard, camera) {
+  encrypt_msg(rotors, settings, word, plugBoard) {
     if (this.state.rotors.length != 3) {
       return;
     }
@@ -84,6 +84,21 @@ handleChange(e) {
   this.setState({
     [e.target.name] : e.target.value.replace(' ', '_')
   })
+
+}
+
+  stopVideo = () => {
+  navigator.mediaDevices.getUserMedia({video: {facingMode:'environment',
+      width:2000, height:1080}
+
+  }).then(stream => {
+      let video = videoRef.current;
+      video.pause();
+      video.src = ''
+      stream.getTracks()[0].stop()
+      
+  }).catch(err => console.error(err ))
+
 
 }
 
@@ -141,7 +156,8 @@ toggleButton(n, rotor) {
 handleCamera() {
   this.setState({
     camera:!this.state.camera
-  })
+  });
+
 }
 
 
@@ -151,7 +167,7 @@ handleCamera() {
     return <Camera 
     handleCamera={this.handleCamera} 
     encrypt={this.encrypt_msg} 
-    rotorSettings={[this.state.r1, this.state.r2, this.state.r3]} 
+    rotorSettings={[0,1,2]} 
     plugBoard={this.state.plug_board}
     rotors={this.state.rotors}
     encryptedWord ={this.state.encryption} />
@@ -166,11 +182,6 @@ handleCamera() {
      }
    
 
-
-
-
-    const numSettings = (rtor) => [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36].map(num  =>
-    { return (<button className={ this.toggleButton(num, rtor)}  name={rtor} key={num * 2}  onClick={ this.handleClickR} value={num}> {num} </button> )})
   
     const chosen = () => [...this.state.rotors].map( item => {
       return  (<div className='chosen' key={item } > <FontAwesomeIcon icon='key'/> {  item  }</div>)
@@ -208,9 +219,9 @@ handleCamera() {
      <div className='scramble-action-wrapper'> 
 
     <button className='scramble' onClick={() => this.encrypt_msg(this.state.rotors, 
-      [this.state.r1,this.state.r2,this.state.r3] ,
-       this.state.word
-      , this.state.plug_board,false )}> Scramble </button> 
+      [0,1,2] ,
+       this.state.word, 
+       this.state.plug_board)}> Scramble </button> 
 
         <div className='cam-btn-wrapper'>
           <div className='camera-btn' onClick={this.handleCamera} > <FontAwesomeIcon icon='camera'/> (in BETA)  </div>
@@ -259,47 +270,16 @@ handleCamera() {
            </div>
           </div>
 
-        {/* <div className='config-wrapper' >
-
-          { this.state.rotors.length == 3 ? <div className='config'>
-          
-                   <h2 className='h2-class'> Choose your configuration settings  </h2>
-           
-           <div className='inpout' >
-              <div className='rotors-set' >  
-               
-                <h4>Rotor 1</h4>
-                <div className='rt-config' name='r1' > {numSettings('r1')} </div>
-             
-             </div>
-             <div className='rotors-set'  >  
-               
-                <h4>Rotor 2</h4>
-                <div className='rt-config' name='r2' > {numSettings('r2')} </div>
-             
-             </div>
-             <div className='rotors-set'>  
-               
-                <h4>Rotor 3</h4>
-                <div  className='rt-config' name='r3' > {numSettings('r3')} </div>
-             
-             </div>
-            
-           </div>    
-           
-            
-             </div> : null
-
-          }
-
-
-        </div> */}
 
       </div>
       
  <div className='plugBoard-wrapper'>
  <h2> Plug Board</h2>
- <div className='plug-settings'> {[...this.state.plug_board].map((item, index) => {if (index % 2 == 1 && index != 0) {return item + ' '} return item }) } </div>
+ <div className='plug-settings'> 
+     {[...this.state.plug_board].map((item, index) => {if (index % 2 == 1 && index != 0) 
+                                               {return item + ' '} 
+                                                        return item }) }
+ </div>
   
  { this.state.plug_board.length < 20 ?
     
@@ -318,3 +298,4 @@ handleCamera() {
     )
   }
 }
+
