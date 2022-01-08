@@ -96,7 +96,7 @@ const Camera = (props) => {
          
              </div>
            
-            {isLoading ? <div className='takePhoto'> <FontAwesomeIcon icon='spinner' spin={true}/>   </div> 
+            {isLoading ? <div className='takePhoto' style={{color:'black'}}> <FontAwesomeIcon icon='lock' />   </div> 
                               : //else :
             <div className='takePhoto' onClick={takePhoto}> <FontAwesomeIcon icon='circle'/>  </div>
           

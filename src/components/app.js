@@ -2,25 +2,22 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import Info from './instructions';
 import Technical from './technical';
-import {faCamera , faLock, faKey, faCircle, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {faCamera , faLock, faKey, faCircle, faCogs,faAtom,faCode, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import Camera from './camera';
 import FuzzySet from 'fuzzyset';
 
 
-library.add(faLock, faCamera, faKey, faCircle, faSpinner)
+library.add(faLock, faCamera, faKey, faCircle, faCogs, faAtom, faCode, faEnvelope)
 export default class App extends PureComponent {
   constructor() {
     super();
      this.state = {
        word : '',
-       rotors: '',
+       rotors: [],
        encryption: '',
        rotor_settings: [true,true,true,true,true],
-       r1:0,
-       r2:1,
-       r3:2,
        letters : ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
        ,'R','S','T','U','V','W','X','Y','Z', '1','2','3','4','5', '6','7', '8', '9', '0', '_' ],
        plug_board: '',
@@ -56,7 +53,7 @@ export default class App extends PureComponent {
        newWord += word[i]
     }
   }
-   const hash_m = {'#':'0', '*':'1', '^':'2','+':'3', '%':'4'}
+   const hash_m = {'key':'0', 'cogs':'1', 'atom':'2', 'code':'3', 'envelope':'4'}
    var newRotor  = ''
    for (var i= 0; i < 3; i++) {
      newRotor += hash_m[rotors[i]]
@@ -87,20 +84,10 @@ handleChange(e) {
 
 }
 
-  stopVideo = () => {
-  navigator.mediaDevices.getUserMedia({video: {facingMode:'environment',
-      width:2000, height:1080}
-
-  }).then(stream => {
-      let video = videoRef.current;
-      video.pause();
-      video.src = ''
-      stream.getTracks()[0].stop()
-      
-  }).catch(err => console.error(err ))
 
 
-}
+
+
 
 handleClickR(e) {
   e.preventDefault();
@@ -126,17 +113,16 @@ handlePlugBoard(letter) {
   
 }
 
-handleRotor(n, rotor) {
+handleRotor(key, rotor) {
   if (this.state.rotors.length == 3) {
     return ; 
   }
-  
   var theItems = [...this.state.rotor_settings]
   theItems[rotor] = false
   this.setState({
-    rotors: this.state.rotors.concat(n),
-    rotor_settings: theItems })
-  console.log(this.state.rotors)
+    rotor_settings: theItems });
+    this.state.rotors.push(key);
+   
 }
 
 toggleButton(n, rotor) {
@@ -183,8 +169,8 @@ handleCamera() {
    
 
   
-    const chosen = () => [...this.state.rotors].map( item => {
-      return  (<div className='chosen' key={item } > <FontAwesomeIcon icon='key'/> {  item  }</div>)
+    const chosen = () => this.state.rotors.map( item => { console.log(item);
+      return  (<div className='chosen' key={item } > <FontAwesomeIcon icon={item}/> </div>)
 
     })
 
@@ -244,20 +230,20 @@ handleCamera() {
             <h2 className='h2-class'> Choose your rotors </h2>
 
         {this.state.rotor_settings[0] ?
-          <button onClick={() => this.handleRotor('#', 0)} > # </button>
+          <button onClick={() => this.handleRotor('key', 0)} > <FontAwesomeIcon icon='key'/> </button>
          :null}
         {this.state.rotor_settings[1] ?
-          <button onClick={() => this.handleRotor('%', 1)} >%</button>
+          <button onClick={() => this.handleRotor('atom', 1)} > <FontAwesomeIcon icon='atom' /> </button>
          : null}
 
          {this.state.rotor_settings[2] ?
-          <button onClick={() => this.handleRotor('*', 2)}  >*</button>
+          <button onClick={() => this.handleRotor('cogs', 2)}  ><FontAwesomeIcon icon='cogs'/> </button>
            : null }
           {this.state.rotor_settings[3] ?
-          <button onClick={() => this.handleRotor('^', 3)}  >^</button>
+          <button onClick={() => this.handleRotor('code', 3)}  ><FontAwesomeIcon icon='code'/></button>
             : null }
           {this.state.rotor_settings[4] ? 
-          <button onClick={() => this.handleRotor('+', 4)}  >+</button> 
+          <button onClick={() => this.handleRotor('envelope', 4)}  ><FontAwesomeIcon icon='envelope'/></button> 
            : null }
          </div>:
          null }
