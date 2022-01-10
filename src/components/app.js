@@ -271,7 +271,7 @@ handleCamera() {
     
       <div>
       {this.state.enablePlug ?
-       <div className='plug-board'> {plugBoard()} </div> : <div className='enablePlug'> <button onClick={() => this.setState({enablePlug:true})}> Enable Plug Board</button> <p>I caution using this feature, it adds alot of complexity</p> </div> }
+       <div className='plug-board'> {plugBoard()} </div> : <div className='enablePlug'> <button onClick={() => this.setState({enablePlug:true})}> Enable Plug Board</button> <p>I caution using this feature, it adds a lot of complexity</p> </div> }
       </div> :   null }
  </div>
      
