@@ -6,7 +6,7 @@ import {faCamera , faLock, faKey, faCircle, faCogs,faAtom,faCode, faEnvelope} fr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import Camera from './camera';
-import FuzzySet from 'fuzzyset';
+
 
 
 library.add(faLock, faCamera, faKey, faCircle, faCogs, faAtom, faCode, faEnvelope)
@@ -169,7 +169,7 @@ handleCamera() {
    
 
   
-    const chosen = () => this.state.rotors.map( item => { console.log(item);
+    const chosen = () => this.state.rotors.map( item => {
       return  (<div className='chosen' key={item } > <FontAwesomeIcon icon={item}/> </div>)
 
     })

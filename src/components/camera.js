@@ -52,7 +52,7 @@ const Camera = (props) => {
         
         var data = photo.toDataURL('image/png');
         photo.setAttribute('src', data);
-        
+        //var textract = require('textract');
         Tesseract.recognize(photo,'eng',
         {logger: m => console.log(m) })
         .catch( err => { console.error(err) })
