@@ -28,6 +28,17 @@ const Camera = (props) => {
         const matrix = block.data;
 
         for (var y = 0; y < matrix.length; y+=4) {
+           
+                const avg = (matrix[y] + matrix[y+1] + matrix[y + 2]) / 3
+
+                matrix[y] = avg
+                matrix[y + 1] = avg
+                matrix[ y+ 2] = avg
+             
+        }
+     
+          for (var y = 0; y < matrix.length; y+=4) {
+
     
                 var  r = matrix[y];
              
@@ -37,7 +48,7 @@ const Camera = (props) => {
              
                 var  gray = (0.499 * r + 0.987 * g + 0.714 * b);
 
-                if ( gray > 120) {
+                if ( gray > 255) {
                     matrix[y] = 255;
                     matrix[y + 1] = 255;
                     matrix[y + 2] = 255
@@ -48,6 +59,9 @@ const Camera = (props) => {
                 }
             
         }
+
+
+
         ctx.putImageData(block, 0, 0);
         
         var data = photo.toDataURL('image/png');
