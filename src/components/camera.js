@@ -48,7 +48,7 @@ const Camera = (props) => {
              
                 var  gray = (0.499 * r + 0.987 * g + 0.714 * b);
 
-                if ( gray > 255) {
+                if ( gray > 200) {
                     matrix[y] = 255;
                     matrix[y + 1] = 255;
                     matrix[y + 2] = 255
