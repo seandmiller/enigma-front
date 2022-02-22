@@ -36,7 +36,7 @@ const Camera = (props) => {
                 matrix[ y+ 2] = avg
              
         }
-     
+         document.getElementById('image').style.filter='blur(1px)'
           for (var y = 0; y < matrix.length; y+=4) {
 
     
@@ -120,7 +120,7 @@ const Camera = (props) => {
 
          </div> 
         <div className='photo'>
-            <canvas ref={photoRef}></canvas>
+            <canvas id='image' ref={photoRef}></canvas>
 
         </div>
    
