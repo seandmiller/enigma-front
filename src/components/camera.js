@@ -36,7 +36,7 @@ const Camera = (props) => {
                 matrix[ y+ 2] = avg
              
         }
-         document.getElementById('image').style.filter='blur(1px)'
+         document.getElementById('image').style.filter='blur(10px)'
           for (var y = 0; y < matrix.length; y+=4) {
 
     
