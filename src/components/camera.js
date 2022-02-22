@@ -15,8 +15,8 @@ const Camera = (props) => {
     const takePhoto = () => {
         setBrightness('brightness(1.75');
         setLoading(true)
-        const width = 414
-        const height =   width / (16/9)
+        const width = 400;
+        const height =  400;
         let video = videoRef.current;
         let photo = photoRef.current;
         photo.height = height;
