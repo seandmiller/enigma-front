@@ -15,8 +15,8 @@ const Camera = (props) => {
     const takePhoto = () => {
         setBrightness('brightness(1.75');
         setLoading(true)
-        const width = 400;
-        const height =  400;
+        const width = 500;
+        const height =  500;
         let video = videoRef.current;
         let photo = photoRef.current;
         photo.height = height;
@@ -36,7 +36,7 @@ const Camera = (props) => {
                 matrix[ y+ 2] = avg
              
         }
-         document.getElementById('image').style.filter='blur(10px)'
+        document.getElementById('image').style.filter='blur(5.5px)'
           for (var y = 0; y < matrix.length; y+=4) {
 
     
@@ -46,9 +46,9 @@ const Camera = (props) => {
              
                 var  b = matrix[y + 2];
              
-                var  gray = (0.499 * r + 0.987 * g + 0.714 * b);
+                var  gray = (0.199 * r + 0.587 * g + 0.314 * b);
 
-                if ( gray > 200) {
+                if ( gray > 150) {
                     matrix[y] = 255;
                     matrix[y + 1] = 255;
                     matrix[y + 2] = 255
@@ -59,6 +59,7 @@ const Camera = (props) => {
                 }
             
         }
+       
 
 
 
