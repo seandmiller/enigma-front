@@ -1,6 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, {useRef, useEffect, useState} from 'react';
 import Tesseract from 'tesseract.js';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+
 
 
 
@@ -10,20 +13,20 @@ const Camera = (props) => {
     const photoRef = useRef(null);
     var [brightness, setBrightness] = useState('brightness(1)');
     var [isLoading, setLoading]    = useState(false)
-   
+    
    
     const takePhoto = () => {
         setBrightness('brightness(1.75');
         setLoading(true)
-        const width = 500;
-        const height =  500;
+        const width = 400;
+        const height =  200;
         let video = videoRef.current;
         let photo = photoRef.current;
         photo.height = height;
         photo.width = width;
         let ctx = photo.getContext('2d');
 
-        ctx.drawImage(video, 0, 0, width, height);
+        ctx.drawImage(video, 20, 20, width, height);
         var block = ctx.getImageData(0,0, width, height);
         const matrix = block.data;
 
@@ -36,7 +39,7 @@ const Camera = (props) => {
                 matrix[ y+ 2] = avg
              
         }
-        document.getElementById('image').style.filter='blur(5.5px)'
+        document.getElementById('image').style.filter='blur(3.5px)'
           for (var y = 0; y < matrix.length; y+=4) {
 
     
@@ -60,14 +63,20 @@ const Camera = (props) => {
             
         }
        
-
-
-
         ctx.putImageData(block, 0, 0);
         
         var data = photo.toDataURL('image/png');
         photo.setAttribute('src', data);
         //var textract = require('textract');
+         
+
+
+
+
+
+
+
+
         Tesseract.recognize(photo,'eng',
         {logger: m => console.log(m) })
         .catch( err => { console.error(err) })
@@ -122,9 +131,14 @@ const Camera = (props) => {
          </div> 
         <div className='photo'>
             <canvas id='image' ref={photoRef}></canvas>
+            
 
         </div>
-   
+      <div>
+      <ReactCrop src={'https://editorial01.shutterstock.com/preview-440/10352396x/298a39fa/Shutterstock_10352396x.jpg'} crop={{aspect:1/1}}/>
+      </div>
+
+
         </div>
     )
 }
