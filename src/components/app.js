@@ -6,6 +6,7 @@ import {faCamera , faLock, faKey, faCircle, faCogs,faAtom,faCode, faEnvelope} fr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {library} from "@fortawesome/fontawesome-svg-core";
 import Camera from './camera';
+import DigitalEnigma from './enigma';
 
 
 
@@ -15,15 +16,17 @@ export default class App extends PureComponent {
     super();
      this.state = {
        word : '',
-       rotors: [],
-       encryption: '',
+       rotorsKey: [],
+       rotors:[],
+       encryption: false,
        rotor_settings: [true,true,true,true,true],
        letters : ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
        ,'R','S','T','U','V','W','X','Y','Z', '1','2','3','4','5', '6','7', '8', '9', '0', '_' ],
-       plug_board: '',
+       plugBoard: '',
        enablePlug:false,
        instructions: true,
-       camera:false
+       camera:false,
+       scrambled: ''
      }
 
     this.encrypt_msg = this.encrypt_msg.bind(this);
@@ -31,17 +34,17 @@ export default class App extends PureComponent {
     this.handleRotor = this.handleRotor.bind(this);
     this.handleClickR = this.handleClickR.bind(this);
     this.handlePlugBoard = this.handlePlugBoard.bind(this);
-    this.handleCamera    =  this.handleCamera.bind(this)
+    this.handleCamera    =  this.handleCamera.bind(this);
+    
   }
 
-  encrypt_msg(rotors, settings, word, plugBoard) {
+  encrypt_msg( word) {
     if (this.state.rotors.length != 3) {
       return;
     }
-    this.setState({encryption:''})
-    var [
-      x,y,z
-   ] = settings
+    var text = word;
+    this.setState({encryption:true, scrambled: text, word:'' })
+  
  //Data clean up
   var wanted = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_qwertyuiopasdfghjklzxcvbnm'.split("")
   var newWord = ''
@@ -52,34 +55,16 @@ export default class App extends PureComponent {
     else if (wanted.indexOf(word[i]) > -1) {
        newWord += word[i]
     }
-  }
-   const hash_m = {'key':'0', 'cogs':'1', 'atom':'2', 'code':'3', 'envelope':'4'}
-   var newRotor  = ''
-   for (var i= 0; i < 3; i++) {
-     newRotor += hash_m[rotors[i]]
+       }
 
    }
-   
-   axios.post(`https://obscure-chamber-16944.herokuapp.com/?rotors=${newRotor}&x=${x}&y=${y}&z=${z}&word=${newWord}&plug_board=${plugBoard}`)
-    .then(response => {
-      
-      this.setState({  
-        encryption: response.data.token,
-        rotor : response.data.settings,
-        word: ''
-      });
-     
-     
-      
-    })
-     .catch(error => console.log(error))
-   
-  }
 
 
 handleChange(e) {
   this.setState({
-    [e.target.name] : e.target.value.replace(' ', '_')
+    [e.target.name] : e.target.value.replace(' ', '_'),
+    encryption:false
+  
   })
 
 }
@@ -104,8 +89,7 @@ handleClickR(e) {
 handlePlugBoard(letter) {
  
   this.setState({
-    
-    plug_board: this.state.plug_board + letter,
+    plugBoard: this.state.plugBoard + letter,
     letters: this.state.letters.filter( item => {return item != letter})
   }) 
 
@@ -114,29 +98,29 @@ handlePlugBoard(letter) {
 }
 
 handleRotor(key, rotor) {
-  if (this.state.rotors.length == 3) {
-    return ; 
-  }
+ 
   var theItems = [...this.state.rotor_settings]
   theItems[rotor] = false
   this.setState({
     rotor_settings: theItems });
-    this.state.rotors.push(key);
+    this.state.rotorsKey.push(key);
+    this.state.rotors.push(rotor);
+    
    
 }
 
-toggleButton(n, rotor) {
-  if (n == this.state.r1 && rotor == 'r1') {
-    return 'active-rotor' + rotor
-  }
-  if (n == this.state.r2 && rotor == 'r2') {
-    return 'active-rotor' + rotor
-  }
-  if(n == this.state.r3 && rotor == 'r3') {
-    return 'active-rotor' + rotor 
-  } 
-  return 'non-active-rotor'
-}
+// toggleButton(n, rotor) {
+//   if (n == this.state.r1 && rotor == 'r1') {
+//     return 'active-rotor' + rotor
+//   }
+//   if (n == this.state.r2 && rotor == 'r2') {
+//     return 'active-rotor' + rotor
+//   }
+//   if(n == this.state.r3 && rotor == 'r3') {
+//     return 'active-rotor' + rotor 
+//   } 
+//   return 'non-active-rotor'
+// }
 
 
 handleCamera() {
@@ -147,7 +131,9 @@ handleCamera() {
 }
 
 
+
   render() {
+    
     
    if (this.state.camera) {
     return <Camera 
@@ -169,12 +155,12 @@ handleCamera() {
    
 
   
-    const chosen = () => this.state.rotors.map( item => {
+    const chosen = () => this.state.rotorsKey.map( item => {
       return  (<div className='chosen' key={item } > <FontAwesomeIcon icon={item}/> </div>)
 
     })
 
-    const plugBoard = () => this.state.letters.map( letter => {
+    const plugBoard = () => this.state.letters.map(letter => {
 
       return (<button onClick={() => this.handlePlugBoard(letter)} className='plug' > {letter} </button>)
     })
@@ -195,19 +181,24 @@ handleCamera() {
            <p>Inspired by the Movie: The Imitation Game</p>
 
       <input type='text' name='word' value={this.state.word} onChange={this.handleChange}  />
-     <h1 className='encrypt-wrapper' > {this.state.encryption.length > 0 ?  <div className='encrypt'> {this.state.encryption} </div> :
+    
+     <h1 className='encrypt-wrapper' > {this.state.encryption ? 
+     
+     <div className='encrypt'> 
+      
+         <DigitalEnigma  word={this.state.scrambled} rotorChoices={this.state.rotors} plugBoard={this.state.plugBoard}/>
+      
+    </div> :
+   
       <FontAwesomeIcon icon='lock' /> } </h1>
     
   
   
-    {this.state.rotors.length == 3 && (this.state.plug_board.length == 20 || this.state.enablePlug == false) ? 
+    {this.state.rotors.length == 3 && (this.state.plugBoard.length == 20 || this.state.enablePlug == false) ? 
      
      <div className='scramble-action-wrapper'> 
 
-    <button className='scramble' onClick={() => this.encrypt_msg(this.state.rotors, 
-      [0,1,2] ,
-       this.state.word, 
-       this.state.plug_board)}> Scramble </button> 
+    <button className='scramble' onClick={() => this.encrypt_msg( this.state.word)}> Scramble </button> 
 
         <div className='cam-btn-wrapper'>
           <div className='camera-btn' onClick={this.handleCamera} > <FontAwesomeIcon icon='camera'/> (in BETA)  </div>
@@ -262,12 +253,12 @@ handleCamera() {
  <div className='plugBoard-wrapper'>
  <h2> Plug Board</h2>
  <div className='plug-settings'> 
-     {[...this.state.plug_board].map((item, index) => {if (index % 2 == 1 && index != 0) 
+     {[...this.state.plugBoard].map((item, index) => {if (index % 2 == 1 && index != 0) 
                                                {return item + ' '} 
                                                         return item }) }
  </div>
   
- { this.state.plug_board.length < 20 ?
+ { this.state.plugBoard.length < 20 ?
     
       <div>
       {this.state.enablePlug ?
@@ -276,6 +267,8 @@ handleCamera() {
  </div>
      
      <Technical/>
+    
+    
 
       </div>
       

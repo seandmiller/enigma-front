@@ -34,7 +34,7 @@ export default function() {
          </p>
          <p>Note: Deprecation - The rotor settings for each rotor (to improve user experience) were removed. So we no longer need 37^3 in our equation </p>
 
-         <p>Creator : <a href='https://aseanimiller.io'>Aseani Miller</a></p>
+         <p>Creator : <a href='https://aseanimiller.netlify.app'>Aseani Miller</a></p>
          <p> Original Machine: <a href='https://en.wikipedia.org/wiki/Enigma_machine'>Click here</a> </p>
 
         </div>
