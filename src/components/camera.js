@@ -3,8 +3,7 @@ import React, {useRef, useEffect, useState} from 'react';
 import Tesseract from 'tesseract.js';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-
-
+import DigitalEnigma from './enigma';
 
 
 
@@ -12,10 +11,13 @@ const Camera = (props) => {
     const videoRef = useRef(null);
     const photoRef = useRef(null);
     var [brightness, setBrightness] = useState('brightness(1)');
-    var [isLoading, setLoading]    = useState(false)
+    var [isLoading, setLoading]    = useState(false);
+    var [word , setWord ] = useState('');
+
     
    
     const takePhoto = () => {
+        console.log('first part')
         setBrightness('brightness(1.75');
         setLoading(true)
         const width = 400;
@@ -38,7 +40,9 @@ const Camera = (props) => {
                 matrix[y + 1] = avg
                 matrix[ y+ 2] = avg
              
+
         }
+        
         document.getElementById('image').style.filter='blur(3.5px)'
           for (var y = 0; y < matrix.length; y+=4) {
 
@@ -75,13 +79,15 @@ const Camera = (props) => {
 
 
 
-
+        console.log('before tesseract')
 
         Tesseract.recognize(photo,'eng',
         {logger: m => console.log(m) })
         .catch( err => { console.error(err) })
         .then(( {data: { text} } ) => 
-         {props.encrypt(props.rotors, props.rotorSettings, text, props.plugBoard, true ); 
+         {//props.encrypt(props.rotors, props.rotorSettings, text, props.plugBoard, true ); 
+        
+            setWord(text);
             setBrightness('brightness(1)');
             setLoading(false) })
 
@@ -116,7 +122,8 @@ const Camera = (props) => {
          <div className='camera-cont'>
             <video ref={videoRef} style={{filter: brightness}} allow='camera;microphone' ></video>
            <div className='crypt-cont'>
-            <div className='cryptic'>{ props.encryptedWord}</div>
+           {word.length > 0 ?
+            <div className='cryptic'> <DigitalEnigma word={word} rotorChoices={props.rotors}  plugBoard={props.plugBoard} />  </div> : null }
          
              </div>
            

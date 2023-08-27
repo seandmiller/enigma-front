@@ -22,7 +22,7 @@ export default class App extends PureComponent {
        rotor_settings: [true,true,true,true,true],
        letters : ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
        ,'R','S','T','U','V','W','X','Y','Z', '1','2','3','4','5', '6','7', '8', '9', '0', '_' ],
-       plugBoard: '',
+       plugBoard: [],
        enablePlug:false,
        instructions: true,
        camera:false,
@@ -139,8 +139,8 @@ handleCamera() {
     return <Camera 
     handleCamera={this.handleCamera} 
     encrypt={this.encrypt_msg} 
-    rotorSettings={[0,1,2]} 
-    plugBoard={this.state.plug_board}
+     
+    plugBoard={this.state.plugBoard}
     rotors={this.state.rotors}
     encryptedWord ={this.state.encryption} />
    }
