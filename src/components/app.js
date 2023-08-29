@@ -45,34 +45,13 @@ export default class App extends PureComponent {
     var text = word;
     this.setState({encryption:true, scrambled: text, word:'' })
   
- //Data clean up
-  var wanted = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_qwertyuiopasdfghjklzxcvbnm'.split("")
-  var newWord = ''
-  for (var i = 0; i < word.length; i++) {
-        if (word[i] == " ") {
-          newWord+= '_'
-        }
-    else if (wanted.indexOf(word[i]) > -1) {
-       newWord += word[i]
-    }
-       }
-
-   }
-
+  }
 
 handleChange(e) {
   this.setState({
     [e.target.name] : e.target.value.replace(' ', '_'),
-    encryption:false
-  
-  })
-
-}
-
-
-
-
-
+    encryption:false});
+};
 
 handleClickR(e) {
   e.preventDefault();
@@ -81,56 +60,27 @@ handleClickR(e) {
   this.setState({
      [e.target.name] : e.target.value,
      ['activeRoto' + e.target.name]: e.target.value
-         })
-
-}
-
+         })};
 
 handlePlugBoard(letter) {
- 
   this.setState({
     plugBoard: this.state.plugBoard + letter,
     letters: this.state.letters.filter( item => {return item != letter})
   }) 
-
-  
-  
-}
+};
 
 handleRotor(key, rotor) {
- 
   var theItems = [...this.state.rotor_settings]
   theItems[rotor] = false
   this.setState({
     rotor_settings: theItems });
     this.state.rotorsKey.push(key);
-    this.state.rotors.push(rotor);
-    
-   
-}
-
-// toggleButton(n, rotor) {
-//   if (n == this.state.r1 && rotor == 'r1') {
-//     return 'active-rotor' + rotor
-//   }
-//   if (n == this.state.r2 && rotor == 'r2') {
-//     return 'active-rotor' + rotor
-//   }
-//   if(n == this.state.r3 && rotor == 'r3') {
-//     return 'active-rotor' + rotor 
-//   } 
-//   return 'non-active-rotor'
-// }
-
+    this.state.rotors.push(rotor); };
 
 handleCamera() {
   this.setState({
     camera:!this.state.camera
-  });
-
-}
-
-
+  });};
 
   render() {
     
@@ -153,8 +103,6 @@ handleCamera() {
         </div>) 
      }
    
-
-  
     const chosen = () => this.state.rotorsKey.map( item => {
       return  (<div className='chosen' key={item } > <FontAwesomeIcon icon={item}/> </div>)
 
@@ -170,9 +118,6 @@ handleCamera() {
          
       <div className='app' style={{background: 'url(' +'https://wallpaperaccess.com/full/2939800.jpg' + ')'}}>
      
-  
-
-  
      <div className='page-wrapper'>
    
      <div className='top-part'>
@@ -192,8 +137,6 @@ handleCamera() {
    
       <FontAwesomeIcon icon='lock' /> } </h1>
     
-  
-  
     {this.state.rotors.length == 3 && (this.state.plugBoard.length == 20 || this.state.enablePlug == false) ? 
      
      <div className='scramble-action-wrapper'> 
@@ -267,10 +210,7 @@ handleCamera() {
  </div>
      
      <Technical/>
-    
-    
-
-      </div>
+  </div>
       
   </div>
 

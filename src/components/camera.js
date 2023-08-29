@@ -75,18 +75,11 @@ const Camera = (props) => {
          
 
 
-
-
-
-
-        console.log('before tesseract')
-
         Tesseract.recognize(photo,'eng',
         {logger: m => console.log(m) })
         .catch( err => { console.error(err) })
         .then(( {data: { text} } ) => 
-         {//props.encrypt(props.rotors, props.rotorSettings, text, props.plugBoard, true ); 
-        
+         {
             setWord(text);
             setBrightness('brightness(1)');
             setLoading(false) })
