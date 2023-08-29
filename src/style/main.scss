@@ -261,7 +261,7 @@
    .plug-board {
        margin-top:30px;
        display: grid;
-       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
        
      
        
@@ -271,7 +271,7 @@
            height:70px;
            background-color: white;
            transition: 1s ease-in-out;
-           border-radius: 20%;
+           
            box-shadow: 1px 3px 2px black;
            animation: fade 1s ease-in-out forwards;
               &:hover {
