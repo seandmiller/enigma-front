@@ -96,7 +96,7 @@
         }
    
     .scramble {
-        
+        text-decoration: none;
         width:170px;
         font-size: 30px;
         outline: none;
@@ -128,7 +128,6 @@
 
 .bottom { 
 
-   
   
  .choices {
      display: center;
@@ -263,7 +262,7 @@
        margin-top:30px;
        display: grid;
        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-       grid-gap:10px;
+       
      
        
 
