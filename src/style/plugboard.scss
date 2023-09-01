@@ -1,0 +1,54 @@
+.plugBoard-wrapper {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 30px;
+    .plug-settings {
+        font-size: 40px;
+        border-bottom: 1px solid black;
+        box-shadow: 1px 1px 5px black;
+        border-radius: 20px;
+        animation: fade 1s ease-in-out forwards;
+    }
+   .plug-board {
+       margin-top:30px;
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+       
+     
+       
+
+       button {
+           width:70%;
+           height:70px;
+           background-color: white;
+           transition: 1s ease-in-out;
+           
+           box-shadow: 1px 3px 2px black;
+           animation: fade 1s ease-in-out forwards;
+              &:hover {
+                  cursor:pointer;
+                  background-color: black;
+                  color:white;
+              }
+       }
+   }
+   .enablePlug {
+     button {
+       background-color: lightgreen;
+       border:transparent;
+       color: white;
+       height:30px;
+       border-radius: 20px;
+       transition: 1s ease-in-out;
+       &:hover {
+       box-shadow: 1px 2px 1px black;
+       cursor:pointer; }
+
+       &:focus {
+           box-shadow: none;
+
+       }
+   
+     } 
+   }
+}

@@ -1,37 +1,10 @@
 @import 'instruc.scss';
 @import  'camera.scss';
+@import 'plugboard.scss';
+@import 'rotors.scss';
+@import 'animations.scss';
 
-@keyframes fade {
-    from {
-        opacity: 0;
-    } to {
-        opacity: 100;
-    }
-}
 
-@keyframes glitch {
-    from { 
-        text-shadow: 0.05em 0 0 rgba(25, 10, 0, 0.75),
-                     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-                     0.025em 0.05em 0 rgba(100, 155, 0, 0.75),
-         ;
-         color:black;
-        transform: translate(1%);
-        transform: translateY(0%);
-        
-        
-    } to {
-        text-shadow: 0.05em 0 0 rgba(0, 255, 0, 0.75),
-                     -0.25em -0.05em 0 rgba(0, 100, 55, 0.75),
-                     0.050em 0.07em 0 rgba(255, 255, 255, 0.75);
-       color: black;
-       transform: translate(-1%);
-      transform: translateY(0%);
-      
-    
-
-    }
-}
 
 .app {
     background-color: none;
@@ -126,54 +99,6 @@
         }
     }
 
-.bottom { 
-
-  
- .choices {
-     display: center;
-     justify-content: center;
-    button {
-        width:20%;
-        height:150px;
-        font-size:30px;
-        background-color: white;
-        border: 1px solid black;
-        transition: 0.5s ease-in-out;
-        &:hover {
-            cursor: pointer;
-            border: 0px transparent;
-            background-color: lightgrey;
-        }
-
-    }
-}
-
-.chosen-wrapper {
-    display: flex;
-    justify-content: space-around;
-    margin-top : 20px;
-    margin-left:5px;
-    
-    
-   .chosen {
-       background-color: black;
-       width: 330px;
-       height: 80px;
-       text-align: center;
-       color: white;
-       display:flex ;
-       justify-content: center;
-       align-items: center;
-       border-radius: 20px;
-       font-size:40px;
-       box-shadow: 0px 5px 5px black;
-       animation: fade 1s ease-in-out forwards;
-       
-   
-   }
-
-   
-} }
 
 .config-wrapper {
     .config {
@@ -247,60 +172,7 @@
        }
     }
    }     
-.plugBoard-wrapper {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 30px;
-    .plug-settings {
-        font-size: 40px;
-        border-bottom: 1px solid black;
-        box-shadow: 1px 1px 5px black;
-        border-radius: 20px;
-        animation: fade 1s ease-in-out forwards;
-    }
-   .plug-board {
-       margin-top:30px;
-       display: grid;
-       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-       
-     
-       
-
-       button {
-           width:70%;
-           height:70px;
-           background-color: white;
-           transition: 1s ease-in-out;
-           
-           box-shadow: 1px 3px 2px black;
-           animation: fade 1s ease-in-out forwards;
-              &:hover {
-                  cursor:pointer;
-                  background-color: black;
-                  color:white;
-              }
-       }
-   }
-   .enablePlug {
-     button {
-       background-color: lightgreen;
-       border:transparent;
-       color: white;
-       height:30px;
-       border-radius: 20px;
-       transition: 1s ease-in-out;
-       &:hover {
-       box-shadow: 1px 2px 1px black;
-       cursor:pointer; }
-
-       &:focus {
-           box-shadow: none;
-
-       }
-   
-     } 
-   }
-} } }
+ } }
 
 body {
     margin:0px;

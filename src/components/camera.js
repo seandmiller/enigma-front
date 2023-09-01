@@ -39,8 +39,6 @@ const Camera = (props) => {
                 matrix[y] = avg
                 matrix[y + 1] = avg
                 matrix[ y+ 2] = avg
-             
-
         }
         
         document.getElementById('image').style.filter='blur(3.5px)'
@@ -71,8 +69,7 @@ const Camera = (props) => {
         
         var data = photo.toDataURL('image/png');
         photo.setAttribute('src', data);
-        //var textract = require('textract');
-         
+
 
 
         Tesseract.recognize(photo,'eng',
@@ -83,8 +80,6 @@ const Camera = (props) => {
             setWord(text);
             setBrightness('brightness(1)');
             setLoading(false) })
-
-      
         
     }
 
