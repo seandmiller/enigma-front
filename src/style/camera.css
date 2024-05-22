@@ -1,0 +1,116 @@
+@keyframes glitch {
+    from { 
+        text-shadow: 0.05em 0 0 rgba(25, 10, 0, 0.75),
+                     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                     0.025em 0.05em 0 rgba(100, 155, 0.75);
+        color: black;
+        transform: translateX(1%) translateY(0%);
+    }
+    to {
+        text-shadow: 0.05em 0 0 rgba(0, 255, 0, 0.75),
+                     -0.25em -0.05em 0 rgba(0, 100, 55, 0.75),
+                     0.050em 0.07em 0 rgba(255, 255, 255, 0.75);
+        color: black;
+        transform: translateX(-1%) translateY(0%);
+    }
+}
+
+.camera-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.camera-wrapper .camera-cont {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.camera-wrapper .camera-cont .crypt-cont {
+    display: flex;
+    justify-content: center;
+}
+
+.camera-wrapper .camera-cont .crypt-cont .cryptic {
+    opacity: 0.5;
+    position: absolute;
+    bottom: 40%;
+ 
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    animation: glitch 0.5s ease-in-out infinite;
+}
+
+.camera-wrapper .camera-cont .takePhoto {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 160%;
+    border-radius: 20px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: red;
+    font-size: 3em;
+    background-color: transparent;
+    transition: 1s ease-in-out;
+}
+
+.camera-wrapper .camera-cont .takePhoto:active {
+    color: white;
+}
+
+.camera-wrapper .camera-cont video {
+    width: 100%;
+}
+
+.camera-wrapper .camera-cont .homepage-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.camera-wrapper .camera-cont .homepage-btn button {
+    background-color: lightgreen;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 20px;
+}
+
+.camera-wrapper .camera-cont .homepage-btn button:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.camera-wrapper .photo {
+    display: none;
+    position: relative;
+}
+
+.caminfo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition:  1s ease-in-out;
+    
+}
+
+.caminfo-wrapper button {
+ background-color: transparent;
+  border: none;
+  text-decoration: none;
+  font-size: 2rem;
+  height: 100%;
+  width: 50%;
+  animation: glitch 0.9s ease-in-out infinite;
+
+}
+
+
+.camera-wrapper button:hover {
+    cursor:pointer;
+}

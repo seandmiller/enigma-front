@@ -1,0 +1,21 @@
+.info-wrapper {
+    text-align: center;
+}
+
+.info-wrapper li {
+    margin-top: 20px;
+}
+
+.info-wrapper button {
+    margin-top: 20px;
+    background-color: lightgreen;
+    border-radius: 20px;
+    border: transparent;
+    transition: 1s ease-in-out;
+    width: 25%;
+}
+
+.info-wrapper button:hover {
+    box-shadow: 1px 2px 1px black;
+    cursor: pointer;
+}
