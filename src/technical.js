@@ -1,16 +1,14 @@
 import React from 'react';
 
 
-export default function() {
-
-
+const Technical = () =>  {
 
     return (
         <div className='technical-overview'>
         <h2>A Technical Overview </h2>
          <h4>The Original Design</h4>
           <div className='img-wrapper'>
-              <img src='https://spartacus-educational.com/00enigma2.jpg'/>
+              <img alt='' src='https://spartacus-educational.com/00enigma2.jpg'/>
               </div>
             <p> At first glance this blueprint may seem a little bit intimidating but it is actually not. 
                 The machine is very simple you type one letter and an electrical signal travels between 3 rotors and then gets reflected by the reflector and travels back out as an output.
@@ -40,3 +38,6 @@ export default function() {
         </div>
     )
 }
+
+
+export default Technical;
