@@ -7,6 +7,7 @@ const openai = new OpenAI({
     apiKey:process.env.REACT_APP_API_KEY,
     dangerouslyAllowBrowser:true
 })
+console.log(process.env.REACT_APP_API_KEY)
 
 
 
