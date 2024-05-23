@@ -114,3 +114,13 @@
 .camera-wrapper button:hover {
     cursor:pointer;
 }
+
+
+
+@media (max-device-width: 375px) {
+
+    .caminfo-wrapper {
+        font-size: 1rem;
+
+    }
+}

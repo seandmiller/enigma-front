@@ -7,6 +7,7 @@ export default class DigitalEnigma extends PureComponent {
         super(props);
         this.dummyWord = props.word.toUpperCase();
         this.word  = ''
+        
         this.rotorOne      = ['USROTZIBHQDNA_WLGCYXEPJVFKM1234567890',
                              'THSMEBANOVXGPKYQW09DC1I2J3F4Z5L6R7U8_']; 
 
@@ -32,7 +33,7 @@ export default class DigitalEnigma extends PureComponent {
             this.word = this.word + '_'
            }
         }
-
+           
         
         this.plug          = {'A':'A', 'B':'B', 'C':'C', 'D':'D','E':'E',
                                'F':'F','G':'G','H':'H', 'I':'I','J':'J',
@@ -59,10 +60,12 @@ export default class DigitalEnigma extends PureComponent {
         idx = idx + 2
        };
 
-
+  
 
     this.rotate = this.rotate.bind(this);
     this.enigma = this.enigma.bind(this);
+    this.word = this.enigma(this.word);
+    navigator.clipboard.writeText(this.word);
 
         
  };  // end of constructor
@@ -134,14 +137,17 @@ export default class DigitalEnigma extends PureComponent {
             };
         
     }
-
+   
+    
+    
     return newWord;      }
         
 
 
 
 
-render() {  return <div>{this.enigma(this.word)}</div>  }
+render() { 
+     return <div>{this.word}</div>  }
 
 }
 

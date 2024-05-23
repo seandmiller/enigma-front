@@ -7,7 +7,7 @@ const openai = new OpenAI({
     apiKey:process.env.REACT_APP_API_KEY,
     dangerouslyAllowBrowser:true
 })
-console.log(process.env.REACT_APP_API_KEY)
+
 
 
 
@@ -124,7 +124,7 @@ const Camera = (props) => {
            
            <div className='crypt-cont'>
            {word.length > 0 ?
-            <div className='cryptic' style={{fontSize:`${15/word.length}rem`}}><DigitalEnigma word={word} rotorChoices={props.rotors}  plugBoard={props.plugBoard} />  </div> : null }
+            <div className='cryptic' style={{fontSize:`${25/word.length}rem`}}><DigitalEnigma word={word} rotorChoices={props.rotors}  plugBoard={props.plugBoard} />  </div> : null }
          
              </div>
            
