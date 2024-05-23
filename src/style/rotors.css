@@ -42,7 +42,7 @@
 }
 
 
-@media (max-device-width: 375px) {
+@media (max-device-width: 575px) {
     .bottom .choices {
         display:block;
     }
