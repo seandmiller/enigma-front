@@ -65,7 +65,7 @@ export default class DigitalEnigma extends PureComponent {
     this.rotate = this.rotate.bind(this);
     this.enigma = this.enigma.bind(this);
     this.word = this.enigma(this.word);
-    navigator.clipboard.writeText(this.word);
+  
 
         
  };  // end of constructor

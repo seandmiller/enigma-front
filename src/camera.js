@@ -108,7 +108,7 @@ const Camera = (props) => {
     
 
     return ( <> 
-    {console.log(cam)}
+   
           
     {cam ?
         <div className='caminfo-wrapper'> <CamInfo/>  <button className='caminfo-btn' onClick={getVideo}>Ready! <FontAwesomeIcon icon='camera'/> </button> </div>: 
@@ -124,7 +124,7 @@ const Camera = (props) => {
            
            <div className='crypt-cont'>
            {word.length > 0 ?
-            <div className='cryptic' style={{fontSize:`${25/word.length}rem`}}><DigitalEnigma word={word} rotorChoices={props.rotors}  plugBoard={props.plugBoard} />  </div> : null }
+            <div className='cryptic' style={{fontSize:`${30/word.length}rem`}}><DigitalEnigma word={word} rotorChoices={props.rotors}  plugBoard={props.plugBoard} />  </div> : null }
          
              </div>
            

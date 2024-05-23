@@ -117,7 +117,7 @@
 
 
 
-@media (max-device-width: 375px) {
+@media (max-device-width: 575px) {
 
     .caminfo-wrapper {
         font-size: 1rem;
