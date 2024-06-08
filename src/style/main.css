@@ -179,11 +179,7 @@ body {
 }
 
 @media (max-device-width: 1024px) {
-    .app {
-    }
 
-    .app button {
-    }
 
     .app button:hover {
         background-color: black;

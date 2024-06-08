@@ -16,14 +16,16 @@
     margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(11, 1fr);
+    grid-gap:10px;
 }
 
 .plugBoard-wrapper .plug-board button {
-    width: 70%;
-    height: 70px;
+    width: 60%;
+    height: 100%;
+    margin-bottom:5px;
     background-color: white;
     transition: 1s ease-in-out;
-    box-shadow: 1px 3px 2px black;
+    border:1px solid black;
     animation: fade 1s ease-in-out forwards;
 }
 
@@ -49,4 +51,10 @@
 
 .plugBoard-wrapper .enablePlug button:focus {
     box-shadow: none;
+}
+
+
+.plug {
+    border-radius: 20px;
+    margin:1px;
 }

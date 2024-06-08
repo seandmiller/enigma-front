@@ -35,7 +35,7 @@ const Camera = (props) => {
               {
                 type: "image_url",
                 image_url: {
-                  "url": img,
+                  url: img,
                 },
               },
             ],
@@ -105,8 +105,7 @@ const Camera = (props) => {
             var track = tracks[i];
             track.stop()
           }
-        
-        
+
         }).catch(err => console.error(err ))
 
         console.log('hello')

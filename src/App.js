@@ -130,8 +130,8 @@ const App = () => {
                 </div>
               ) : (
                 <div className='enablePlug'>
-                  <button onClick={() => setEnablePlug(true)}>Enable Plug Board</button>
-                  <p>I caution using this feature, it adds a lot of complexity</p>
+                  <button onClick={() => {alert('20 letters must be selected!'); setEnablePlug(true)}}>Enable Plug Board</button>
+                  <p>I caution using this feature, it adds a lot of complexity, 20 letters selected!</p>
                 </div>
               )}
             </div>
