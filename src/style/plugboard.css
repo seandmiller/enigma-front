@@ -66,5 +66,10 @@
         grid-template-columns: repeat(9, 1fr);
         grid-gap:5px;
     }
-
+    .plugBoard-wrapper {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 2rem;
+    }
 }
