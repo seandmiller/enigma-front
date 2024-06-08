@@ -46,4 +46,10 @@
     .bottom .choices {
         display:block;
     }
+    
+    .bottom .choices button:hover {
+        cursor: pointer;
+        border: 1px solid;
+    
+    }
 }
