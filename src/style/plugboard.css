@@ -60,6 +60,7 @@
         margin-top: 30px;
         display: grid;
         width: 50%;
+        border:20px;
         grid-template-columns: repeat(9, 1fr);
         grid-gap:5px;
     }
