@@ -48,8 +48,9 @@
     }
     
     .bottom .choices button:hover {
-        cursor: pointer;
-        border: 1px solid;
+        cursor: initial;
+        border: initial;
+        background-color: initial;
     
     }
 }
