@@ -28,6 +28,10 @@
     transition: 1s ease-in-out;
     border:1px solid black;
     animation: fade 1s ease-in-out forwards;
+    display: flex;   
+    justify-content: center;    
+    align-items: center;    
+    text-align: center;
 }
 
 .plugBoard-wrapper .plug-board button:hover {
