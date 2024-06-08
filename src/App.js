@@ -131,7 +131,7 @@ const App = () => {
               ) : (
                 <div className='enablePlug'>
                   <button onClick={() => {alert('20 letters must be selected!'); setEnablePlug(true)}}>Enable Plug Board</button>
-                  <p>I caution using this feature, it adds a lot of complexity, 20 letters selected!</p>
+                  <p>Select 20 letters for this feature, these 20 letters will need to be included as apart of your key</p>
                 </div>
               )}
             </div>
