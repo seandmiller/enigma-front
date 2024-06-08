@@ -178,7 +178,7 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-@media (max-device-width: 1024px) {
+@media (max-device-width: 575px) {
 
 
     .app button:hover {
@@ -258,68 +258,12 @@ body {
     position: relative;
 }
 
-@media (max-device-width: 375px) {
-    .app .page-wrapper .top-part .nested .encrypt-wrapper {
-        display: flex;
-        justify-content: center;
-    }
-
-    .app .page-wrapper .top-part .nested .encrypt-wrapper .encrypt {
-        width: 70%;
-    }
-
-    .app .page-wrapper .top-part .nested input {
-        width: 50%;
-    }
-
-    .app .page-wrapper .top-part .nested input:hover {
-        width: 50%;
-    }
-
-    .app .page-wrapper .top-part .nested input:focus {
-        width: 50%;
-    }
-
-    .app .page-wrapper .bottom .rotors .chosen-wrapper {
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-gap: 10px;
-        border-radius: 0px;
-    }
-
-    .app .page-wrapper .plugBoard-wrapper .plug-board {
-        margin-top: 30px;
-        display: grid;
-        grid-template-columns: repeat(10, 1fr);
-    }
-
-    .app .page-wrapper .plugBoard-wrapper .plug-board button {
-        text-align: center;
-        width: 104%;
-    }
-
-    .app .page-wrapper .config-wrapper .config .inpout .rotors-set .rt-config {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-gap: 0px;
-    }
-
-    .app .page-wrapper .config-wrapper .config .inpout .rotors-set .rt-config button {
-        width: 40px;
-        height: 40px;
-        transition: 1s ease-in-out;
-        border-radius: 20px;
-        outline: 0;
-        text-decoration: none;
-    }
-
-    .app .page-wrapper .config-wrapper .config .inpout .rotors-set .rt-config button:hover {
-        background-color: black;
-        color: white;
-        cursor: pointer;
-    }
-}
-
+.no-hover .button:hover {
+    background-color: initial;
+    color: initial;
+    cursor: initial;
+  }
+  
 @media (hover: none) and (pointer: coarse) {
     .button:hover {
       background-color: initial;
