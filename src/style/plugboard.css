@@ -58,6 +58,7 @@
 
 @media (max-device-width: 575px) {
     .plugBoard-wrapper .plug-board {
+        margin-left:10%;
         margin-top: 30px;
         display: grid;
         width: 50%;
