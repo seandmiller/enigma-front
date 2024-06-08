@@ -58,9 +58,9 @@
 
 @media (max-device-width: 575px) {
     .plugBoard-wrapper .plug-board {
-        margin-left:5%;
-        margin-top: 30px;
+      
         display: grid;
+        margin:auto;
         width: 50%;
         border:20px;
         grid-template-columns: repeat(9, 1fr);
