@@ -93,16 +93,40 @@ const Camera = (props) => {
 
 
 
-    const  getVideo = () => {
-       setCam(false);
+    const  getVideo = (disabled) => {
+
+        if (disabled) {
+          navigator.mediaDevices.getUserMedia({video: {facingMode:'environment',
+          width:2000, height:1080}
+      }).then(stream => {
+       
+          var tracks = stream.getTracks();    
+          for (var i = 0; i < tracks.length; i++) {
+            var track = tracks[i];
+            track.stop()
+          }
+        
+        
+        }).catch(err => console.error(err ))
+
+        console.log('hello')
+
+          return;}
+
+
+      
+        setCam(false);
         navigator.mediaDevices.getUserMedia({video: {facingMode:'environment',
             width:2000, height:1080}
         }).then(stream => {
             let video = videoRef.current;
             video.setAttribute('playsinline', true);
             video.srcObject = stream; 
-            video.play();}).catch(err => console.error(err ))
+            video.play();     
+          
+          }).catch(err => console.error(err ))
           }
+
   
 
     
@@ -111,7 +135,7 @@ const Camera = (props) => {
    
           
     {cam ?
-        <div className='caminfo-wrapper'> <CamInfo/>  <button className='caminfo-btn' onClick={getVideo}>Ready! <FontAwesomeIcon icon='camera'/> </button> </div>: 
+        <div className='caminfo-wrapper'> <CamInfo/>  <button className='caminfo-btn' onClick={() => getVideo(false)}>Ready! <FontAwesomeIcon icon='camera'/> </button> </div>: 
      
     
     
@@ -132,7 +156,7 @@ const Camera = (props) => {
                               : 
             <div className='takePhoto' onClick={takePhoto}> <FontAwesomeIcon icon='circle'/>  </div>}
 
-           <div className='homepage-btn'> <button onClick={props.handleCamera}>HomePage </button> </div>
+           <div className='homepage-btn' onClick={() => getVideo(true)}> <button onClick={props.handleCamera}>HomePage </button> </div>
          </div> 
         <div className='photo'>
             <canvas id='image' ref={photoRef}></canvas>
