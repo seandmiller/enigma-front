@@ -319,3 +319,11 @@ body {
         cursor: pointer;
     }
 }
+
+@media (hover: none) and (pointer: coarse) {
+    .button:hover {
+      background-color: initial;
+      color: initial;
+      cursor: initial;
+    }
+  }
