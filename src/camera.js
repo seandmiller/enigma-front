@@ -94,8 +94,6 @@ const Camera = (props) => {
         })
         .catch((err) => console.error(err));
 
-      console.log("hello");
-
       return;
     }
 
