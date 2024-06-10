@@ -110,10 +110,9 @@ const App = () => {
               value={word}
               onChange={handleChange}
               aria-label="Input word"
-              ref={setInputRef}
             />
 
-            <h1 className="encrypt-wrapper">
+            <h1 className="encrypt-wrapper" ref={setInputRef}>
               {encryption ? (
                 <div className="encrypt">
                   <DigitalEnigma
