@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import Info from "./instructions";
 import Technical from "./technical";
 import {
@@ -58,11 +58,6 @@ const App = () => {
   const { rotorSettings, rotorsKey, rotors, handleRotor } = useRotors();
   const { plugBoard, letters, enablePlug, handlePlugBoard, setEnablePlug } =
     usePlugBoard();
-  const setInputRef = useCallback((node) => {
-    if (node) {
-      node.focus();
-    }
-  }, []);
 
   const encryptMsg = (word) => {
     setEncryption(true);
@@ -73,6 +68,9 @@ const App = () => {
   const handleChange = (e) => {
     setWord(e.target.value.replace(" ", "_"));
     setEncryption(false);
+    if (rotors.length < 3) {
+      alert(`You must select 3 Rotors!, you have ${3 - rotors.length} to go!`);
+    }
   };
 
   if (camera) {
@@ -112,7 +110,7 @@ const App = () => {
               aria-label="Input word"
             />
 
-            <h1 className="encrypt-wrapper" ref={setInputRef}>
+            <h1 className="encrypt-wrapper">
               {encryption ? (
                 <div className="encrypt">
                   <DigitalEnigma

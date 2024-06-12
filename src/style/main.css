@@ -258,12 +258,8 @@ body {
     position: relative;
 }
 
-.no-hover .button:hover {
-    background-color: initial;
-    color: initial;
-    cursor: initial;
-  }
-  
+
+
 @media (hover: none) and (pointer: coarse) {
     .button:hover {
       background-color: initial;
