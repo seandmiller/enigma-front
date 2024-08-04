@@ -44,6 +44,7 @@
 .app .page-wrapper .top-part .nested .encrypt-wrapper .encrypt {
   animation: glitch 0.5s ease-in-out infinite;
   width: 70%;
+  font-size: 1px;
   overflow-wrap: break-word;
   word-wrap: break-word;
   -ms-word-break: break-all;
@@ -198,10 +199,6 @@ body {
 }
 
 @media (max-device-width: 575px) {
-  .app .page-wrapper .top-part .nested .encrypt-wrapper .encrypt {
-    font-size: 1px;
-  }
-
   .app button:hover {
     background-color: black;
     color: white;
@@ -262,9 +259,6 @@ body {
   .app .page-wrapper .plugBoard-wrapper .plug-board button:hover {
     background-color: white;
     color: black;
-  }
-
-  .app .page-wrapper .plugBoard-wrapper .plug-board {
   }
 
   .app .page-wrapper .config-wrapper .config .inpout {
