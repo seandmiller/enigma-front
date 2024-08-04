@@ -199,7 +199,7 @@ body {
 
 @media (max-device-width: 575px) {
   .app .page-wrapper .top-part .nested .encrypt-wrapper .encrypt {
-    font-size: x-small;
+    font-size: 1px;
   }
 
   .app button:hover {
