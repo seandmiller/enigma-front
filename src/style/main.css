@@ -198,8 +198,19 @@ body {
 }
 
 @media (max-device-width: 575px) {
-  .encrypt {
-    font-size: smaller;
+  .app .page-wrapper .top-part .nested .encrypt-wrapper .encrypt {
+    animation: glitch 0.5s ease-in-out infinite;
+    width: 70%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    font-size: x-small;
   }
 
   .app button:hover {
